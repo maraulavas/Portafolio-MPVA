@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://portafolio.m-paulavasqueza.workers.dev/sitemap.xml
