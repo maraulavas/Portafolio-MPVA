@@ -1,0 +1,219 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Neue Montreal', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Neue Montreal', ui-sans-serif, system-ui, sans-serif;
+  --font-hand: 'Neue Montreal', ui-sans-serif, system-ui, sans-serif;
+
+  /* Acento rosado (dirección visual elegida) */
+  --color-blush-50: #fff1f7;
+  --color-blush-100: #ffe0ee;
+  --color-blush-200: #ffc2dd;
+  --color-blush-300: #ff9ac6;
+  --color-blush-400: #ff69ac;
+  --color-blush-500: #f83f92;
+  --color-blush-600: #e01f76;
+  --color-blush-700: #b8145d;
+
+  --color-ink: #1b1420;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Evita selección de texto accidental al arrastrar carpetas */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Scrollbar sutil dentro de ventanas */
+.win-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+.win-scroll::-webkit-scrollbar-thumb {
+  background: rgba(27, 20, 32, 0.18);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+.win-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(27, 20, 32, 0.32);
+  background-clip: content-box;
+}
+
+/* Resaltador rosado tipo marcador (acento editorial) */
+.marker {
+  background-image: linear-gradient(
+    120deg,
+    transparent 0%,
+    var(--color-blush-200) 0%,
+    var(--color-blush-200) 100%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 42%;
+  background-position: 0 78%;
+  padding: 0 0.08em;
+}
+
+/* Scroll del preview de sitio (marco Safari): barra fina y discreta */
+.preview-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(27, 20, 32, 0.25) transparent;
+}
+.preview-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.preview-scroll::-webkit-scrollbar-thumb {
+  background: rgba(27, 20, 32, 0.25);
+  border-radius: 999px;
+}
+
+/* Todo lo que se puede clicar muestra la manito. Va en la capa base para que
+   los cursores personalizados (cursor-none, cursor-grab, estilos en línea) sigan
+   ganando donde ya existen. */
+@layer base {
+  button:not(:disabled),
+  a[href],
+  summary,
+  select,
+  label[for],
+  input[type='checkbox'],
+  input[type='radio'],
+  input[type='file'],
+  input[type='submit'],
+  input[type='button'],
+  [role='button']:not([aria-disabled='true']),
+  [role='link'],
+  [role='tab'] {
+    cursor: pointer;
+  }
+}
+
+/* Carruseles sin barra de scroll visible (móvil) */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---- Inicio (cielo animado) ---- */
+@keyframes home-rise {
+  from { opacity: 0; transform: translateY(0.45em); filter: blur(8px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes home-pop {
+  from { opacity: 0; transform: scale(0.82) translateY(24px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes ed-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes ed-rise {
+  from { transform: translateY(112%); }
+  to { transform: translateY(0); }
+}
+@keyframes home-float {
+  0%, 100% { transform: translateY(0) rotate(var(--r0, 0deg)); }
+  50% { transform: translateY(var(--fy, -12px)) rotate(var(--r1, 0deg)); }
+}
+@keyframes home-dash {
+  to { stroke-dashoffset: -28; }
+}
+
+@font-face {
+  font-family: 'Parfumerie Script';
+  src: url('/assets/fonts/parfumerie-script.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/assets/fonts/NeueMontreal-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/assets/fonts/NeueMontreal-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/assets/fonts/NeueMontreal-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/assets/fonts/NeueMontreal-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/assets/fonts/NeueMontreal-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/assets/fonts/NeueMontreal-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/assets/fonts/NeueMontreal-Medium.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/assets/fonts/NeueMontreal-MediumItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@keyframes ed-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes ed-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
